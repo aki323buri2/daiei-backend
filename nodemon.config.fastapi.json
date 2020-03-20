@@ -1,0 +1,5 @@
+{
+  "exec": "pipenv run python src/main.py", 
+  "watch": "src/**/*", 
+  "ext": "py"
+}

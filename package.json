@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }, 
+  "scripts": {
+    "dev:fastapi": "nodemon --config nodemon.config.fastapi.json"
+  }
+}

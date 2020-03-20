@@ -1,0 +1,10 @@
+.zip/
+node_modules/
+yarn.lock
+
+csv/*.csv
+out.txt
+.download/
+
+.vscode/
+vscode.bat

@@ -1,0 +1,23 @@
+from utils import fullpath 
+from fastapi import APIRouter 
+import pandas as pd 
+#########################################
+# router
+#########################################
+router = APIRouter()
+@router.get('/')
+async def hinsyu_dataframe_route(offset=0, chunk=1000):
+  df = hinsyu_dataframe(offset, chunk)
+  return df.to_dict(orient='record')
+
+#########################################
+# constants
+#########################################
+CSV_ROOT = fullpath('../csv')
+HINSYU_CSV = fullpath(CSV_ROOT, 'hinsyu.csv')
+
+def hinsyu_dataframe(offset, chunk):
+  filename = HINSYU_CSV 
+  df = pd.read_csv(filename, low_memory=False).fillna('')
+  df = df[offset:offset + chunk]
+  return df 
