@@ -1,5 +1,6 @@
 from utils import fullpath 
 from fastapi import FastAPI 
+from fastapi.middleware.cors import CORSMiddleware 
 import uvicorn 
 
 from models import table_describe 
@@ -7,6 +8,14 @@ from models import tran
 from models import hinsyu  
 
 app = FastAPI()
+
+app.add_middleware(
+  CORSMiddleware, 
+  allow_origins=['*'], 
+  allow_credentials=True, 
+  allow_methods=['*'], 
+  allow_headers=['*'], 
+)
 
 @app.get('/')
 def hello():
