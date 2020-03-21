@@ -1,8 +1,10 @@
 from utils import fullpath
 from glob import glob 
 import pandas as pd 
-import json, re  
+import json, re, os
 from fastapi import APIRouter
+
+import settings 
 
 router = APIRouter()
 
@@ -20,7 +22,8 @@ async def table_describe_route(tablename):
 #####################################
 # constants
 #####################################
-CSV_ROOT = fullpath('../csv')
+CSV_ROOT = settings.CSV_ROOT 
+print(CSV_ROOT)
 DESCRIPTION_FILTER = '_describe_*_*_*(*).csv'
 DESCRIPTION_FILTER_REGEX = r'\[(.+)_(.+)_(.+)\]_\((.+)\)'
 
@@ -34,7 +37,7 @@ def describe_filename_filter(tablename):
 def table_list():
   # glob files
   dirname = CSV_ROOT
-  filter = '{}\{}'.format(dirname, DESCRIPTION_FILTER)
+  filter = '{}{}{}'.format(dirname, os.sep, DESCRIPTION_FILTER)
   filenames = glob(filter)
   
   # parse info from filename 
@@ -76,7 +79,7 @@ def table_describe(tablename):
 def table_describe_dataframe(tablename):
   dirname = CSV_ROOT
   filter = describe_filename_filter(tablename)
-  filter = '{}\{}'.format(dirname, filter)
+  filter = '{}{}{}'.format(dirname, os.sep, filter)
   filenames = glob(filter)
 
   if len(filenames) == 0:

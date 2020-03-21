@@ -8,3 +8,5 @@ out.txt
 
 .vscode/
 vscode.bat
+
+.env

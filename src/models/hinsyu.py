@@ -1,6 +1,7 @@
 from utils import fullpath 
 from fastapi import APIRouter 
 import pandas as pd 
+import settings 
 #########################################
 # router
 #########################################
@@ -13,7 +14,7 @@ async def hinsyu_dataframe_route(offset=0, chunk=1000):
 #########################################
 # constants
 #########################################
-CSV_ROOT = fullpath('../csv')
+CSV_ROOT = settings.CSV_ROOT 
 HINSYU_CSV = fullpath(CSV_ROOT, 'hinsyu.csv')
 
 def hinsyu_dataframe(offset, chunk):

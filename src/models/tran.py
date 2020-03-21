@@ -3,6 +3,7 @@ from dateutil.relativedelta import relativedelta
 from dateutil.parser import parse 
 from fastapi import APIRouter 
 import pandas as pd 
+import settings
 
 tablename = 'urikaktrn'
 buscd = '0281'
@@ -22,7 +23,7 @@ def tran_read_dataframe_route(tablename, buscd, ymd, aitcd=None, denno=None):
 ##############################################
 # constants
 ##############################################
-CSV_ROOT = fullpath('../csv')
+CSV_ROOT = settings.CSV_ROOT 
 DATE_COMPARE_FORMAT = '%Y-%m-%d %H:%M:%S'
 
 def tran_read_dataframe(tablename, buscd, ymd, aitcd=None, denno=None):
