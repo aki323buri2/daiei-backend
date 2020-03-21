@@ -6,7 +6,7 @@ module.exports = {
 
     // Options reference: https://pm2.keymetrics.io/docs/usage/application-declaration/
     // args: 'one two',
-    args: ['-c', 'pipenv run python src/main.js'], 
+    args: ['-c', 'pipenv run python src/main.py'], 
 
     instances: 1,
     autorestart: true,
