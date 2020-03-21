@@ -2,7 +2,7 @@ module.exports = {
   apps : [{
     name: 'API',
     // script: 'app.js',
-    script: 'bin/bash', 
+    script: '/bin/bash', 
 
     // Options reference: https://pm2.keymetrics.io/docs/usage/application-declaration/
     // args: 'one two',
