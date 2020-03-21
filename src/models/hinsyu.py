@@ -19,6 +19,8 @@ HINSYU_CSV = fullpath(CSV_ROOT, 'hinsyu.csv')
 
 def hinsyu_dataframe(offset, chunk):
   filename = HINSYU_CSV 
+  offset = int(offset)
+  chunk = int(chunk)
   df = pd.read_csv(filename, low_memory=False).fillna('')
   df = df[offset:offset + chunk]
   return df 
