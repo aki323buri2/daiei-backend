@@ -20,6 +20,19 @@ def tran_read_dataframe_route(tablename, buscd, ymd, aitcd=None, denno=None):
   df = tran_read_dataframe(tablename, buscd, ymd, aitcd, denno)
   return df.to_dict(orient='record')
 
+@router.get('/{tablename}/summary')
+def tran_read_dataframe_summary_route(tablename, buscd, ymd):
+  df = tran_read_dataframe(tablename, buscd, ymd)
+
+  # 相手先CD、伝票NOごとの金額集計
+  keyCols = ['URI_AITCD', 'URI_DENNO']
+  groupby = df.groupby(keyCols)['URI_KINGK']
+  size = groupby.size().reset_index().set_index(keyCols).rename(columns={'URI_KINGK': 'KENSU'})
+  kin = groupby.sum().reset_index().set_index(keyCols)
+  merged = size.merge(kin, on=keyCols).reset_index()
+
+  return merged.to_dict(orient='record')
+
 ##############################################
 # constants
 ##############################################
