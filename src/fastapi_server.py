@@ -6,6 +6,8 @@ import uvicorn
 from models import table_describe 
 from models import tran  
 from models import hinsyu  
+from models import urisaki
+from models import kaisaki
 
 app = FastAPI()
 
@@ -34,6 +36,16 @@ app.include_router(
 app.include_router(
   hinsyu.router, 
   prefix='/hinsyu', 
+)
+
+app.include_router(
+  urisaki.router, 
+  prefix='/urisaki', 
+)
+
+app.include_router(
+  kaisaki.router, 
+  prefix='/kaisaki', 
 )
 
 if __name__ == '__main__':
