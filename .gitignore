@@ -10,3 +10,6 @@ out.txt
 vscode.bat
 
 .env
+
+.venv/
+__pycache__

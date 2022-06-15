@@ -3,15 +3,12 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware 
 import uvicorn 
 
-from models import (
-  table_describe, 
-  tran, 
-  hinsyu, 
-  urisaki, 
-  kaisaki, 
-  gzaikozan, 
-  urisaki2, 
-) 
+from models import table_describe 
+from models import tran  
+from models import hinsyu  
+from models import urisaki
+from models import kaisaki
+from models import buka
 
 app = FastAPI()
 
@@ -23,14 +20,39 @@ app.add_middleware(
   allow_headers=['*'], 
 )
 
-app.include_router(urisaki2.router, prefix='/urisaki2')
-app.include_router(gzaikozan.router, prefix='/gzaikozan')
+@app.get('/')
+def hello():
+  return 'hello'
 
-app.include_router(urisaki.router, prefix='/urisaki')
-app.include_router(tran.router, prefix='/tran')
-app.include_router(table_describe.router, prefix='/describe')
-app.include_router(hinsyu.router, prefix='/hinsyu')
-app.include_router(kaisaki.router, prefix='/kaisaki')
+app.include_router(
+  buka.router, 
+  prefix='/buka', 
+)
+
+app.include_router(
+  table_describe.router, 
+  prefix='/describe', 
+)
+
+app.include_router(
+  tran.router, 
+  prefix='/tran', 
+)
+
+app.include_router(
+  hinsyu.router, 
+  prefix='/hinsyu', 
+)
+
+app.include_router(
+  urisaki.router, 
+  prefix='/urisaki', 
+)
+
+app.include_router(
+  kaisaki.router, 
+  prefix='/kaisaki', 
+)
 
 if __name__ == '__main__':
   uvicorn.run(app)

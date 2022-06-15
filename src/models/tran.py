@@ -16,11 +16,7 @@ denno = '281212720797'
 ##############################################
 router = APIRouter()
 @router.get('/{tablename}')
-def tran_read_dataframe_route(
-  tablename = tablename, 
-  buscd = buscd, 
-  ymd = ymd, 
-  aitcd=None, denno=None):
+def tran_read_dataframe_route(tablename, buscd, ymd, aitcd=None, denno=None):
   df = tran_read_dataframe(tablename, buscd, ymd, aitcd, denno)
   return df.to_dict(orient='record')
 
